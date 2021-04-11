@@ -10,9 +10,9 @@ Jawab: fclose() digunakan untuk menutup file. Jika tidak digunakan function ini,
 
 
 Kegiatan 2
-a.	feof()
+a.	kegunaan feof()
 Jawab: digunakan untuk mengecek apakah sudah sampai ke akhir file ( end-of-file )
-b.	fgets()
+b.	kegunaan fgets()
 Jawab: digunakan untuk membaca satu baris dari sebuah file
 
 
