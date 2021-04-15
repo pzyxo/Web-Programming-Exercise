@@ -6,7 +6,7 @@ $diameter = $_GET['d'];
 $tinggi = $_GET['t'];
 $lSelimut = ($phi * $diameter) * $tinggi;
 $lLingkaran = ($phi * ($diameter ** 2)) / 4;
-$lTabung = round((2 * $lSelimut) + $lLingkaran, 2);
+$lTabung = round($lSelimut + (2 * $lLingkaran), 2);
 
 echo ("Luas tabung $nama dengan diameter $diameter dan tinggi $tinggi adalah $lTabung satuan luas");
 ?>
