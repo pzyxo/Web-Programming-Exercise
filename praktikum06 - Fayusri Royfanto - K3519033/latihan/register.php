@@ -3,13 +3,17 @@
         <title>Register</title>
     </head>
     <body>
-        <h1>Register</h1>
+        <center>
+        <p><h1>Register</h1></p>
+        <br>
         <form method="post">
             <p>Nama Lengkap <br><input type="text" name="nama"><br></p>
             <p>Username <br><input type="text" name="username"><br></p>
             <p>Password <br><input type="password" name="password"><br></p>
-            <p><br><input type="submit" name="submit" value="Register"> Sudah punya akun? Log in <a href='form.html'>di sini</a><p>
+            <p><br><input type="submit" name="submit" value="Register">
+            <br>Sudah punya akun? Log in <a href='form.html'>di sini</a><p>
         </form>
+</center>
     </body>
 </html>
 

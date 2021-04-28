@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
             header("Location: game.php");
         }
     }
-    echo("Login gagal, silahkan coba kembali");
+    echo("<center><h2>Login gagal, silahkan coba <a href='form.html'>log in</a> kembali</h2></center>");
 
 }
 ?>
