@@ -18,10 +18,6 @@
 </html>
 
 
-
-
-
-
 <?php
 if(isset($_POST['submit'])){
     $namafile = "data-user.txt";
