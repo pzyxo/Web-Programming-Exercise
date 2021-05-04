@@ -45,12 +45,18 @@ include('dbconnect.php');
             echo "Hello ".$_COOKIE['nama']." tetap semangat ya... you can do the best!!";
             echo "<br>Lives: <".$_SESSION['lives']."> | Score: <".$_SESSION['score']."></h3><br>";
             echo "<p><form method='post'>";
-            echo "<h4>Berapakah ".$_SESSION['angka1']." + ".$_SESSION['angka2']." = 
+             
+            $hasil = $_SESSION['angka1'] + $_SESSION['angka2'];
+            
+            if(!isset($_POST['submit'])){
+            echo "<h4>Berapakah ".$_SESSION['angka1']." + ".$_SESSION['angka2']." = <br>";
+            echo"
             <input type='text' class='form-control-sm' name='jawaban'>
             <button type='submit' class='btn btn-outline-primary btn-sm' name='submit'>Jawab</button></form></p>"; 
-            $hasil = $_SESSION['angka1'] + $_SESSION['angka2'];
+            }
+            
 
-            if(isset($_POST['submit'])){
+            else{
                 
                 $jawab = intval($_POST['jawaban']);
                 if ($hasil == $jawab){
