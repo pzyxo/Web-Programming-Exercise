@@ -11,7 +11,7 @@
 <body>
  <a href="index.php">Kembali</a>
  <br/><br/>
- <form action="add.php" method="post" name="form1">
+ <form action="add.php" method="post">
  <table width="25%" border="0">
  <tr>
  <td>Nama</td>
@@ -64,7 +64,7 @@ value="Add"></td>
  // include database
  include_once("dbconnect.php");
  // Insert data
- $result = mysqli_query($mysqli, "INSERT INTO data_karyawan(nama,email,telepon,alamat,jenis kelamin,tempat lahir, tanggal lahir) VALUES('$name','$email','$telepon', $alamat, $jenisklmn, $tempatlahir, $tanggallahir)");
+ $result = mysqli_query($mysqli, "INSERT INTO data_karyawan(nama,email,telepon,alamat,jenis kelamin,tempat lahir, tanggal lahir) VALUES('$name','$email','$telepon', '$alamat', '$jenisklmn', '$tempatlahir', '$tanggallahir')");
 if($result){
 echo "Mahasiswa berhasil ditambahkan! <a href='index.php'>View
 Mahasiswa</a>";
