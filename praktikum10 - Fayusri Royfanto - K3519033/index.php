@@ -13,14 +13,16 @@
     <?php
 
     include_once("dbconnect.php");
-    $result = mysqli_query($mysqli, "SELECT * FROM data_karyawan ORDER BY id_karyawan DESC");
+    $result = mysqli_query($mysqli, "SELECT * FROM data_karyawan ORDER BY id_karyawan ASC");
     ?>
 
     <title>Hello, world!</title>
   </head>
   <body>
     <div class="container container-fluid" style="position: absolute; top:10%; left:8%;z-index: 2;transform;width: 100%; text-align:center;color: white;">
-        
+    
+    <a class='btn btn-outline-primary btn-sm' name='add' href='add.php'>Add</a>
+    <br>
     <table border='2' class="table table-dark table-bordered border-light">
         <tr class='table-light'>
         <th>ID Karyawan.</th>
@@ -47,8 +49,7 @@
             echo"<td>{$row['tempat lahir']}</td>";
             echo"<td>{$row['tanggal lahir']}</td>";
             echo"<td><a class='btn btn-outline-warning btn-sm' name='edit' href='edit.php'>Edit</a>
-            <a class='btn btn-outline-danger btn-sm' name='delete' href='delete.php'>Delete</a>
-            <a class='btn btn-outline-primary btn-sm' name='add' href='add.php'>Add</a></td>";
+            <a class='btn btn-outline-danger btn-sm' name='delete' href='delete.php'>Delete</a></td>";
 
         }
         ?>

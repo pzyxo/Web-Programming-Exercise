@@ -11,8 +11,12 @@
 <body>
  <a href="index.php">Kembali</a>
  <br/><br/>
- <form action="add.php" method="post">
+ <form method="post" name="form1">
  <table width="25%" border="0">
+ <tr>
+ <td>ID karyawan</td>
+ <td><input type="text" name="idkary"></td>
+ </tr>
  <tr>
  <td>Nama</td>
  <td><input type="text" name="name"></td>
@@ -31,9 +35,9 @@
  </tr>
  <tr>
  <td>Jenis Kelamin</td>
- <td><input type="radio" id="pria" name="gender" value="male">
+ <td><input type="radio" id="pria" name="gender" value="pria">
 <label for="male">pria</label><br>
-<input type="radio" id="wanita" name="gender" value="female">
+<input type="radio" id="wanita" name="gender" value="wanita">
 <label for="female">wanita</label></td>
  </tr>
  <tr>
@@ -46,29 +50,33 @@
  </tr>
  <tr>
  <td></td>
- <td><input type="submit" name="Submit"
-value="Add"></td>
+ <td><input type="submit" name="Submit" value="Add"></td>
  </tr>
  </table>
  </form>
  <?php
  // Cek apakah ada parameter $_POST yang terisi, jika iya masukkan dalam DB.
  if(isset($_POST['Submit'])) {
+ 
  $name = $_POST['name'];
+ $id = $_POST['idkary'];
  $email = $_POST['email'];
  $telepon = $_POST['telepon'];
  $alamat = $_POST['alamat'];
  $jenisklmn = $_POST['gender'];
  $tempatlahir = $_POST['tempatlahir'];
  $tanggallahir = $_POST['tgllahir'];
+ echo "{$name} {$id} {$email} {$telepon} {$alamat} {$jenisklmn} {$tempatlahir} {$tanggallahir}";
  // include database
  include_once("dbconnect.php");
  // Insert data
- $result = mysqli_query($mysqli, "INSERT INTO data_karyawan(nama,email,telepon,alamat,jenis kelamin,tempat lahir, tanggal lahir) VALUES('$name','$email','$telepon', '$alamat', '$jenisklmn', '$tempatlahir', '$tanggallahir')");
+ $result = mysqli_query($mysqli, "INSERT INTO `data_karyawan` (`id_karyawan`, `nama`, `email`, `telepon`, `alamat`, `jenis kelamin`, `tempat lahir`, `tanggal lahir`)  VALUES('$id','$name','$email','$telepon', '$alamat', '$jenisklmn', '$tempatlahir', '$tanggallahir')");
+ $query = "INSERT INTO `data_karyawan` (`id_karyawan`, `nama`, `email`, `telepon`, `alamat`, `jenis kelamin`, `tempat lahir`, `tanggal lahir`) VALUES ('02', 'Royfanto', 'hydrex.ion45@gmail.com', '+628992472151', 'kiringan, ponggok', 'pria', 'Bangkalan', '2000-07-03')";
 if($result){
 echo "Mahasiswa berhasil ditambahkan! <a href='index.php'>View
 Mahasiswa</a>";
  }
+ mysqli_close($mysqli);
 }
  ?>
 </body>
