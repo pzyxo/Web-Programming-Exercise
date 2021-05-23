@@ -8,12 +8,10 @@ $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri_segment = explode('/', $uri_path);
 
 
-function get_karyawan($id=""){
+function show_data($id=""){
 	global $koneksi;
-	
-	if (empty($id)) {
-		$query = "SELECT * FROM mahasiswa";
-	} else {
+	$query = "SELECT * FROM mahasiswa";
+	if (!empty($id)) {
 		$query = "SELECT * FROM mahasiswa WHERE NIM=$id";
 	}
 	$respon = array();
@@ -39,7 +37,7 @@ function get_karyawan($id=""){
 	echo json_encode($respon);
 }
 
-function insert_karyawan(){
+function insert_data(){
 	global $koneksi;
 	$data = json_decode(file_get_contents('php://input'), true);
 	$NIM = $data['NIM'];
@@ -66,7 +64,7 @@ function insert_karyawan(){
 
 }
 
-function update_karyawan($id){
+function update_data($id){
 	global $koneksi;
 	$data = json_decode(file_get_contents('php://input'), true);
 	$nama= $data['nama'];
@@ -92,7 +90,7 @@ function update_karyawan($id){
 
 }
 
-function delete_karyawan($id){
+function delete_data($id){
 	global $koneksi;
 
 	$query = "DELETE FROM mahasiswa WHERE NIM = $id";
@@ -117,23 +115,23 @@ function delete_karyawan($id){
 
 switch($request){
 	case 'GET':
-		if(empty($_REQUEST['id'])){
-			get_karyawan();
-		} else {
+		if(!empty($_REQUEST['id'])){
 			$id = $_REQUEST['id'];
-			get_karyawan($id);
+			show_data($id);
+		} else {
+			show_data();
 		}
 		break;
 	case 'POST':
-		insert_karyawan();
+		insert_data();
 		break;
 	case 'PUT':
 		$id = $_REQUEST['id'];
-		update_karyawan($id);
+		update_data($id);
 		break;
 	case 'DELETE':
 		$id = $_REQUEST['id'];
-		delete_karyawan($id);
+		delete_data($id);
 		break;
 	default:
 	header("HTTP/1.0 405 Method Tidak Terdaftar");
