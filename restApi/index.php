@@ -117,10 +117,10 @@ function delete_karyawan($id){
 
 switch($request){
 	case 'GET':
-		$id = $_REQUEST['id'];
-		if($id===""){
+		if(empty($_REQUEST['id'])){
 			get_karyawan();
 		} else {
+			$id = $_REQUEST['id'];
 			get_karyawan($id);
 		}
 		break;
