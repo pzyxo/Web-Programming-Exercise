@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^restApi/?$ index.php/?id= [NC,L]
+RewriteRule ^restApi/([A-Z0-9]+)/?$ index.php?id=$1 [NC,L]
