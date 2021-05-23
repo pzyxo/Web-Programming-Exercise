@@ -7,12 +7,36 @@ $request = $_SERVER['REQUEST_METHOD'];
 $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri_segment = explode('/', $uri_path);
 
+switch($request){
+	case 'GET':
+		if(!empty($uri_segment[4])){
+			$id = (string)($uri_segment[4]);
+			show_data($id);
+		} else {
+			show_data();
+		}
+		break;
+	case 'POST':
+		insert_data();
+		break;
+	case 'PUT':
+		$id = (string)($uri_segment[4]);
+		update_data($id);
+		break;
+	case 'DELETE':
+		$id = (string)($uri_segment[4]);
+		delete_data($id);
+		break;
+	default:
+	header("HTTP/1.0 405 Method Tidak Terdaftar");
+	break;
+}
 
 function show_data($id=""){
 	global $koneksi;
 	$query = "SELECT * FROM mahasiswa";
 	if (!empty($id)) {
-		$query = "SELECT * FROM mahasiswa WHERE NIM=$id";
+		$query = "SELECT * FROM mahasiswa WHERE NIM='$id'";
 	}
 	$respon = array();
 	$result = mysqli_query($koneksi, $query);
@@ -72,7 +96,7 @@ function update_data($id){
 	$semester = $data['semester'];
 	$IPK = $data['IPK'];
 
-	$query = "UPDATE mahasiswa SET nama = '{$nama}', angkatan = '{$angkatan}', semester = '{$semester}', IPK = '{$IPK}' WHERE mahasiswa.NIM = $id";
+	$query = "UPDATE mahasiswa SET nama = '{$nama}', angkatan = '{$angkatan}', semester = '{$semester}', IPK = '{$IPK}' WHERE mahasiswa.NIM = '$id'";
 
 	if(mysqli_query($koneksi, $query)){
 		$respon = [
@@ -93,7 +117,7 @@ function update_data($id){
 function delete_data($id){
 	global $koneksi;
 
-	$query = "DELETE FROM mahasiswa WHERE NIM = $id";
+	$query = "DELETE FROM mahasiswa WHERE NIM = '$id'";
 
 	if(mysqli_query($koneksi, $query)){
 		$respon = [
@@ -111,28 +135,5 @@ function delete_data($id){
 
 }
 
-switch($request){
-	case 'GET':
-		if(!empty($_REQUEST['id'])){
-			$id = $_REQUEST['id'];
-			show_data($id);
-		} else {
-			show_data();
-		}
-		break;
-	case 'POST':
-		insert_data();
-		break;
-	case 'PUT':
-		$id = $_REQUEST['id'];
-		update_data($id);
-		break;
-	case 'DELETE':
-		$id = $_REQUEST['id'];
-		delete_data($id);
-		break;
-	default:
-	header("HTTP/1.0 405 Method Tidak Terdaftar");
-	break;
-}
+
 ?>
