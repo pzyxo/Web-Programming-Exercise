@@ -46,7 +46,7 @@ function insert_data(){
 	$semester = $data['semester'];
 	$IPK = $data['IPK'];
 
-	$query = "INSERT INTO mahasiswa (NIM, nama, angkatan, semester, IPK) VALUES ('$NIM', '$nama', '$angkatan', '$semester', '$IPK')";
+	$query = "INSERT INTO mahasiswa (NIM, nama, angkatan, semester, IPK) VALUES ('{$NIM}', '{$nama}', '{$angkatan}', '{$semester}', '{$IPK}')";
 
 	if(mysqli_query($koneksi, $query)){
 		$respon = [
@@ -110,8 +110,6 @@ function delete_data($id){
 	echo json_encode($respon);
 
 }
-
-
 
 switch($request){
 	case 'GET':
